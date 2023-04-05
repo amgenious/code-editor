@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Editor</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <label class="label-word">
+                <div>
+                    <i class="fa-brands fa-html5"></i> HTML 
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <p onclick="copied_html()" class="copy" id="cy1">Copy</p>
+                </div>
+            </label>
+            <textarea id="htmlcode" onkeyup="run()"></textarea>
+
+            <label class="label-word">
+                <div>
+                    <i class="fa-brands fa-css3-alt"></i> CSS
+                </div>
+                <div>
+                    <p onclick="copied_css()" class="copy"id="cy2">Copy</p>
+                </div>
+            </label>
+            <textarea id="csscode" onkeyup="run()"></textarea>
+
+            <label class="label-word">
+                <div>
+                    <i class="fa-brands fa-js"></i> JavaScript
+                </div>
+                <div>
+                    <p onclick="copied_js()" class="copy" id="cy3">Copy</p>
+                </div>
+            </label>
+            <textarea id="jscode" onkeyup="run()"></textarea>
+        </div>
+        <div class="right">
+            <label><i class="fa-solid fa-play"></i> Output</label>
+            <iframe id="output"></iframe>
+        </div>
+    </div>
+    
+
+    <script>
+        function run(){
+            let htmlCode = document.getElementById("htmlcode").value;
+            let cssCode = document.getElementById("csscode").value;
+            let jsCode = document.getElementById("jscode").value;
+            let output = document.getElementById('output');
+
+            output.contentDocument.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>"; 
+            output.contentWindow.eval(jsCode);
+
+        }
+
+        function copied_html(){
+            navigator.clipboard.writeText(htmlcode.value)
+            document.getElementById("cy1").innerHTML="Copied";
+        }
+        function copied_css(){
+            navigator.clipboard.writeText(htmlcode.value)
+            document.getElementById("cy2").innerHTML="Copied";
+        }
+        function copied_js(){
+            navigator.clipboard.writeText(htmlcode.value)
+            document.getElementById("cy3").innerHTML="Copied";
+        }
+    </script>
+</body>
+</html>
